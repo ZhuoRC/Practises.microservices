@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  mymicroservice:
+    image: ${DOCKER_REGISTRY-}mymicroservice
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "3000:80"
