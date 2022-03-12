@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  microservice-consumer:
+    image: ${DOCKER_REGISTRY-}microserviceconsumer
+    build:
+      context: .
+      dockerfile: Microservice-Consumer\Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "3000:80"
+  microservice-publisher:
+    image: ${DOCKER_REGISTRY-}microservicepublisher
+    build:
+      context: .
+      dockerfile: Microservice-Publisher\Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "3001:80"

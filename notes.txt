@@ -2,6 +2,10 @@ dotnet new webapi -o MyMicroservice --no-https -f net6.0
 
 docker build -t mymicroservice .
 
-docker rmi $(docker images -f dangling=true -q)
+docker rm $(docker ps -a -f status=exited -q)
+
+docker rmi -f $(docker images -f dangling=true -q)
 
 docker run -it --rm -p 3000:80 --name mymicroservicecontainer mymicroservice
+
+

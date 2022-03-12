@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "microservice-consumer",
+      "composeLaunchUrl": "{Scheme}://{ServiceIPAddress}{ServicePort}/swagger",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "microservice-consumer": "StartDebugging",
+        "microservice-publisher": "StartDebugging"
+      }
+    }
+  }
+}
