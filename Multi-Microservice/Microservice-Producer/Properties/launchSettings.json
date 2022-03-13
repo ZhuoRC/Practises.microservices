@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Microservice_Publisher": {
+    "Microservice_Producer": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

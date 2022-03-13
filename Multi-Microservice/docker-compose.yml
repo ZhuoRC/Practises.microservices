@@ -1,6 +1,19 @@
 version: '3.4'
 
 services:
+  rabbitmq: # login guest:guest
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: "rabbitmq"
+    labels:
+      NAME: "rabbitmq"
+    ports:
+    - "4369:4369"
+    - "5671:5671"
+    - "5672:5672"
+    - "25672:25672"
+    - "15671:15671"
+    - "15672:15672"
   microservice-consumer:
     image: ${DOCKER_REGISTRY-}microserviceconsumer
     build:
@@ -10,12 +23,19 @@ services:
       - ASPNETCORE_URLS=http://+:80
     ports:
       - "3000:80"
-  microservice-publisher:
-    image: ${DOCKER_REGISTRY-}microservicepublisher
+  microservice-producer:
+    image: ${DOCKER_REGISTRY-}microserviceproducer
     build:
       context: .
-      dockerfile: Microservice-Publisher\Dockerfile
+      dockerfile: Microservice-Producer\Dockerfile
     environment:
       - ASPNETCORE_URLS=http://+:80
     ports:
       - "3001:80"
+  microservice-rabbitmqworker:
+    image: ${DOCKER_REGISTRY-}microservicerabbitmqworker
+    build:
+      context: .
+      dockerfile: RabbitMQWorkerService\Dockerfile
+    labels:
+      NAME: "rabbitmq-worker"

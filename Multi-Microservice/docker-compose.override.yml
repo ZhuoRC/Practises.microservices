@@ -4,6 +4,9 @@ services:
   microservice-consumer:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-  microservice-publisher:
+  microservice-producer:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+  microservice-rabbitmqworker:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
